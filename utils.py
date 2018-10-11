@@ -4,6 +4,7 @@
 # In[49]:
 
 import pandas as pd
+import gensim 
 import numpy as np
 import string
 punc = '!"#$%&\'()*+,./:;<=>?@[\\]^_`{|}~' #string.punctuation = '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'
@@ -110,3 +111,8 @@ def getWordIdenFromOutputVector(originSt, outVec):
 def code2text(codeList, vocab):
     wordList = [vocab[i] for i in codeList]
     return ' '.join(wordList)
+def list2W2Vec (list,vocab):
+    list_matrix = [] 
+    model_w2v = gensim.models.Word2Vec(list, size = 20, window =4, min_count=1 ,workers=10)
+    list_matrix = list(model_w2v.wv.vocab) 
+    return list_matrix 
