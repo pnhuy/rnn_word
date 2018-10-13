@@ -111,8 +111,11 @@ def getWordIdenFromOutputVector(originSt, outVec):
 def code2text(codeList, vocab):
     wordList = [vocab[i] for i in codeList]
     return ' '.join(wordList)
-def list2W2Vec (list,vocab):
+
+def list2W2Vec (list, vocab, size = 20, window = 4, min_count = 1, workers = 2):
+    # Dr. Tu khoi tao function
+    # Huy chinh lai cac default parameters
     list_matrix = [] 
-    model_w2v = gensim.models.Word2Vec(list, size = 20, window =4, min_count=1 ,workers=10)
+    model_w2v = gensim.models.Word2Vec(list, size = size, window = window, min_count = min_count ,workers = workers)
     list_matrix = list(model_w2v.wv.vocab) 
     return list_matrix 
